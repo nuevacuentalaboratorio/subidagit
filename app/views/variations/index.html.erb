@@ -1,0 +1,23 @@
+
+
+<h1>Items in <%= @product.title %></h1>
+
+<table>
+  <tr>
+    <th>Item name</th>
+  </tr>
+
+<% for variation in @variations %>
+  <tr>
+    <td><%= variation.name %></td>
+    <td><%= link_to 'Show', product_variation_path(@product, variation) %></td>
+    <td><%= link_to 'Edit', edit_product_variation_path(@product, variation) %></td>
+    <td><%= link_to 'Destroy', product_variation_path(@product, variation), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New item', new_product_variation_path(@product) %>
+<%= link_to 'Back to Order', @product %>

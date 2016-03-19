@@ -1,0 +1,760 @@
+<style type="text/css">
+    
+    .image-product{
+        width: 80%;
+        
+    }
+
+
+</style>
+
+<link rel="stylesheet" media="(max-width: 700px)" />
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2> <%= @product.title %> Detail</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="<%= url_for :controller => 'dashboards', :action => 'dashboard_1' %>">Home</a>
+            </li>
+            <li>
+                <a>E-commerce</a>
+            </li>
+            <li class="active">
+                <strong>Product detail</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+
+<div class="row">
+    <div class="col-lg-12">
+
+        <div class="ibox product-detail">
+            <div class="ibox-content">
+
+                <div class="row">
+                    <div class="col-md-5">
+
+            <!-- Product Slider -->
+
+            <div class="col-lg-12">
+              <br>
+              <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                 
+                  <li data-target="#myCarousel" data-slide-to="1"></li>
+                  <li data-target="#myCarousel" data-slide-to="2"></li>
+                  <li data-target="#myCarousel" data-slide-to="3"></li>
+                </ol>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+                  <div class="item active" style="text-align:center;">
+                    <p><%= image_tag @product.asset.url, class: "image-product" %></p>
+                  </div>
+
+                  <div class="item" style="text-align:center;">
+                    <p> <%= image_tag @product.asset2.url, class: "image-product" %></p>
+                     
+                  </div>
+                
+                  <div class="item" style="text-align:center;">
+                    <p> <%= image_tag @product.asset3.url, class: "image-product" %></p>
+                  </div>
+
+                </div>
+
+                <!-- Left and right controls -->
+                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                  <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Product Slider -->
+
+
+                    </div>
+                    <div class="col-md-7">
+
+                        <h2 class="font-bold m-b-xs">
+                            <%= @product.title%>
+                        </h2>
+                        
+                        <div class="m-t-md">
+                            <h2 class="product-main-price">$ <%= @product.price%> <small class="text-muted">Exclude Tax</small> </h2>
+                        </div>
+                        <hr>
+
+                        <h4>Product description</h4>
+
+                        <div class="small text-muted">
+                            <%= @product.description %>
+
+                            <br><br>
+
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </div>
+                        <dl class="small m-t-md">
+                            <dt>Tags</dt>
+                            <dd><%= @product.tags %></dd>
+                          
+                        </dl>
+                        <hr>
+
+                        <div>
+                            <div class="btn-group">
+                               
+                                <button id="btnpro1" class="btn btn-primary btn-sm col-xs-12 col-lg-6"><i class="fa fa-star"></i> Add to wishlist </button>
+
+
+
+                                <button id="btnpro2" class="btn btn-success btn-sm col-xs-12 col-lg-6"><i class="fa fa-envelope"></i> Add Variants </button>
+
+                                
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="ibox-footer">
+                            <span class="pull-right">
+                                 <%= link_to 'Edit', edit_product_path, class: "btn btn-success", id: "btnedit" %> 
+
+                                 <%= link_to 'Back', products_path, class: "btn btn-primary",  id: "btnback" %>
+                            </span>
+                             <br><br>
+            </div>
+
+
+
+
+
+
+<!-- Variations -->
+
+<div class="col-lg-12" >
+
+<br>
+
+<%= form_for [@product, Variation.new] do |f| %>
+   <%= f.text_field :name, placeholder: "Add Variation", id: "value", value: "", class: "form-control", style: "box-shadow: 0.5px 0.5px 0.5px 0.5px green;" %>
+ <br>
+
+
+ <%= f.submit "add Variation", id: "addvariation", value: "Add Variation", onClick: "addInput('thtag', 'thtag2')", class: "btn btn-primary col-lg-2 col-md-12 col-sm-12 col-xs-12" %>
+ <%end%>
+<br><br>
+<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+
+
+<table class="table">
+<thead>
+<% @product.variations.each do |va| %>
+
+     <th><%= va.name %> </th>
+    
+<% end %>
+</thead>
+
+<tbody><tr>
+<% for variation in @variations %>
+
+ <td><%= link_to 'Delete', product_variation_path(@product, variation), :confirm => 'Are you sure?', :method => :delete, class: "btn btn-xs btn-outline btn-danger" %>
+
+ <% end %></td>
+ </tr>
+ </tbody>
+
+</table>
+
+
+
+
+
+</div>
+
+<br><br>
+<br>
+<input id="productid" type="text" value="" placeholder='Product ID' class="form-control">
+          <br><br>
+<input id="productbrand" type="text" value="" placeholder='Brand' class="form-control">
+          <br><br>
+<input id="productclass" type="text" value="" placeholder='Product Type' class="form-control">
+          <br><br>
+<input id="productw" type="text" value="" placeholder='Product Weight' class="form-control">
+          <br><br>
+ 
+ 
+
+
+ <input type="button" value="Add SKU" onClick="addInput2();" class="btn btn-success "> 
+
+  <input type="button" value="Delete SKU" onClick="eraseRow();" class="btn btn-primary" style="margin-left:5px;"> 
+ <br><br>
+
+
+
+
+
+
+<%= form_for [@product, Sku.new] do |f| %>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr >
+        <th id="thpi" >Product ID</th>
+        <th id="thsku">SKU</th>
+        <th id="thean" >EAN-UPC</th>
+        
+
+        <% @product.variations.each do |va| %>
+
+            <th><%= va.name %> </th>
+
+        <% end %>
+        
+        
+
+        <th>$ Retail Price</th>
+        <th>$ Sale Price</th>
+        <th>$ Cost</th>
+        <th>Inventory</th>
+        <th>Classification</th>
+        <th>Brand</th>
+        <th>Weight(lbs)</th>
+
+        
+        
+      </tr>
+    </thead>
+    <tbody id="trtag">
+   <tr id="rowsku" >
+
+   <td ><%= f.text_field :productid, class:'form-control', id: 's1', :required => true %></td>
+
+   <td><%= f.text_field :sku, class:'form-control', id: 's2', :required => true %></td>
+
+   <td><%= f.text_field :ean, class:'form-control', id: 's3', :required => true %></td>
+
+   <td><%= f.text_field :variant1, class:'form-control', id: 's4', :required => true %></td>
+
+   <td><%= f.text_field :variant2, class:'form-control', id: 's5', :required => true %></td>
+
+
+
+   <td><%= f.text_field :retailprice, class:'form-control', id: 's7', :required => true %></td>
+
+  
+   <td><%= f.text_field :saleprice, class:'form-control', id: 's8', :required => true %></td>
+   <td><%= f.text_field :cost, class:'form-control', id: 's9', :required => true %></td>
+     <td><%= f.text_field :inv, class:'form-control', id: 's10', :required => true %></td>
+   <td><%= f.text_field :classification, class:'form-control', id: 's11', :required => true %></td>
+   <td><%= f.text_field :brand, class:'form-control', id: 's12', :required => true %></td>
+   <td><%= f.text_field :weight, class:'form-control', id: 's13',  :required => true %></td>
+
+     
+
+   </tr>
+
+    </tbody>
+  </table>
+  </div>
+  <br>
+
+    <%= f.submit "Save", :onClick => "return guardar()" , class: "btn btn-danger col-lg-2 col-md-12 col-sm-12 col-xs-12" %>
+
+    
+
+</div>
+<%end%>
+
+
+
+
+
+
+
+
+   
+
+
+
+
+<!-- Variations -->
+
+
+
+<!--
+<p>
+  <b>Product name:</b>
+  <%= @product.title %>
+</p>
+
+<h2>variations</h2>
+<% @product.variations.each do |va| %>
+
+    <%= va.name %>
+
+<% end %>
+
+
+
+<%= link_to 'Show variations', product_variations_path(@product) %>
+
+<br>
+
+<%= form_for [@product, Variation.new] do |f| %>
+<p>
+    <%= f.label :name, "New Variation" %><br>
+    <%= f.text_area :name %>
+</p>
+<p><%= f.submit "add Variation" %></p>
+<%end%>
+-->
+
+
+
+
+
+
+
+
+
+
+
+            
+
+
+            
+        </div>
+
+    </div>
+</div>
+
+</div>
+
+
+
+<div id="dvData">
+    <table>
+    <thead>
+      <tr >
+        <th>Product ID</th>
+        <th>SKU</th>
+        <th>EAN-UPC</th>
+        
+
+        <% @product.variations.each do |va| %>
+
+            <th><%= va.name %> </th>
+
+        <% end %>
+        
+        
+
+        <th >$ Retail Price</th>
+        <th>$ Sale Price</th>
+        <th>$ Cost</th>
+        <th>Inventory</th>
+        <th>Classification</th>
+        <th>Brand</th>
+        <th>Weight(lbs)</th>
+
+        
+        
+      </tr>
+    </thead>
+<tbody >
+      <%= form_for (@product) do |f| %>
+        <% @product.skus.each do |sku| %>
+
+            <tr class="info">
+
+            <td><%= sku.productid %></td>
+              <td><%= sku.sku %></td>
+              <td><%= sku.ean %></td>
+              <td><%= sku.variant1 %></td>
+              <td ><%= sku.variant2 %></td>
+              <td><%= sku.retailprice %></td>
+              <td><%= sku.saleprice %></td>
+               <td><%= sku.cost %></td>
+               <td><%= sku.inv %></td>
+               <td><%= sku.classification %></td>
+               <td><%= sku.brand %></td>
+                <td><%= sku.weight %></td>
+                
+              
+            </tr>
+
+        <% end %>
+        <%end%>
+      
+    </tbody>
+    </table>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+<div class="row">
+  <div class="col-lg-12" id="variantstabletittle">
+    
+<div class="table-responsive" id="">
+  <table class="table table-hover" >
+    <thead>
+      <tr >
+        <th>Product ID</th>
+        <th>SKU</th>
+        <th>EAN-UPC</th>
+        
+
+        <% @product.variations.each do |va| %>
+
+            <th><%= va.name %> </th>
+
+        <% end %>
+        
+        
+
+        <th >$ Retail Price</th>
+        <th>$ Sale Price</th>
+        <th>$ Cost</th>
+        <th>Inventory</th>
+        <th>Classification</th>
+        <th>Brand</th>
+        <th>Weight(lbs)</th>
+
+        
+        
+      </tr>
+    </thead>
+    <tbody >
+      <%= form_for (@product) do |f| %>
+        <% @product.skus.each do |sku| %>
+
+            <tr class="info">
+
+            <td><input style="width:200px;" class="form-control" type="text" value="<%= sku.productid %>"></td>
+              <td><input style="width:200px;" class="form-control" type="text" value="<%= sku.sku %>"></td>
+              <td><input style="width:200px;" class="form-control" type="text" value="<%= sku.ean %>"></td>
+              <td><input style="width:100px;" class="form-control" type="text" value="<%= sku.variant1 %>"></td>
+              <td ><input style="width:100px;" class="form-control" type="text" value="<%= sku.variant2 %>"></td>
+              <td><input style="width:100px;" class="form-control" type="text" value="<%= sku.retailprice %>"></td>
+              <td><input style="width:100px;" class="form-control" type="text" value="<%= sku.saleprice %>"></td>
+               <td><input style="width:100px;"  class="form-control" type="text" value="<%= sku.cost %>"></td>
+               <td><input style="width:100px;" class="form-control" type="text" value="<%= sku.inv %>"></td>
+               <td><input style="width:100px;" class="form-control" type="text" value="<%= sku.classification %>"></td>
+               <td><input style="width:100px;" class="form-control" type="text" value="<%= sku.brand %>"></td>
+                <td><input style="width:100px;" class="form-control" type="text" value="<%= sku.weight %>"></td>
+                
+                <td><%= link_to 'Delete', product_sku_path(@product, sku), :confirm => 'Are you sure?', :method => :delete, class: "btn btn-xs btn-outline btn-danger" %></td>
+
+                 
+
+  
+
+
+              
+            </tr>
+
+        <% end %>
+        <%end%>
+      
+    </tbody>
+  </table>
+
+  </div>
+
+    <input type="image" id="btnExport" src="<%= image_path('excel.png') %>" />
+    
+  <br>
+
+
+  </div>
+</div>
+</div>
+
+<style>
+
+
+  
+  #dvData{
+    opacity:0;
+    height: 0px;
+    margin-top: -25px;
+  }
+  
+  #btnExport{
+    width: 30px;
+    height: 30px;
+    margin-bottom:8px;
+    margin-top:15px;
+  }
+
+
+@media (max-width: 700px) {
+   #btnExport{
+    width: 30px;
+    height: 30px;
+    margin-bottom:25px;
+    margin-top:0px;
+  }
+
+  #btnpro1{
+    
+  }
+
+  #btnpro2{
+   margin-top: 15px;
+  }
+
+}
+
+
+
+</style>
+
+
+
+
+<% content_for :javascript do %>
+
+
+<script>
+  
+$("#btnExport").click(function (e) {
+    window.open('data:application/vnd.ms-excel,' + $('#dvData').html());
+    //window.open('data:application/vnd.ms-'+defaults.type+';filename=exportData.doc;' + base64data);
+    e.preventDefault();
+});
+
+
+
+</script>
+
+<script type="text/javascript">
+
+
+$(window).load(function() {
+
+    $('.product-images').slick({
+        dots: true
+    });
+
+});
+
+</script>
+
+<script type="text/javascript">
+  document.getElementById('rowsku').style.visibility = "hidden";
+</script>
+
+
+<script type="text/javascript">
+    
+        var counter=0;
+
+        <% @product.variations.each do |va| %>
+
+            counter++;
+
+        <% end %>
+
+       
+
+        if(counter>=2){
+            document.getElementById('addvariation').disabled = true;
+            document.getElementById('addvariation').readOnly = "readOnly";
+            
+        }
+
+</script>
+
+
+
+ <script type="text/javascript">
+
+
+
+
+     document.getElementById('productid').value = "";
+     document.getElementById('productclass').value = "";
+     document.getElementById('productw').value = "";
+     document.getElementById('productbrand').value = "";
+     document.getElementById('value').value = "";
+
+
+function addInput(divName, divName2){
+
+    if(counter>=2){
+        alert("You have reached the limit of adding " + counter + " variants");
+
+        document.getElementById('new_variation').onsubmit = function() {
+            return false;
+        }
+    }
+}
+
+/*
+    var limit = 3;
+
+    function addInput(divName, divName2){
+
+         if (counter == limit)  {
+
+              alert("You have reached the limit of adding " + counter + " inputs");
+
+         }
+
+         else {
+
+              if(counter==0){
+              var vala = document.getElementById('value').value;
+              document.getElementById(divName).innerHTML = vala;
+              counter++;
+              }else{
+
+              var valb = document.getElementById('value').value;
+              document.getElementById(divName2).innerHTML = valb;
+
+              counter++;
+              }
+
+         
+         }
+
+    }*/
+
+    var a = 0;
+
+    var b = 1;
+
+    
+
+    function addInput2(){
+
+         var pid = document.getElementById('productid').value;
+         var pid2 = document.getElementById('productclass').value;
+         var pid3 = document.getElementById('productbrand').value;
+         var pid4 = document.getElementById('productw').value;
+
+
+        if(counter==0){
+
+            alert("You need to add at least one variant");
+        }   
+        else{
+
+         if(pid=="" || pid2=="" || pid3=="" || pid4==""){
+
+             alert("You need to fill the Product ID, Class, Brand, Weight fields");
+
+            }else{
+
+              document.getElementById('s1').value = pid;
+               document.getElementById('s2').value = pid;
+               document.getElementById('s11').value = pid2;
+               document.getElementById('s12').value = pid3;
+                document.getElementById('s13').value = pid4;
+                 
+
+
+              document.getElementById('rowsku').style.visibility = "visible";
+
+        }
+       }
+    }
+
+      function guardar(){
+
+        var z = document.getElementById('s1').value;
+        var zz = document.getElementById('s2').value;
+        
+
+
+
+        if(z==zz){
+         
+            alert("Product ID and SKU can not be equal");
+             document.getElementById("s2").focus();
+            return false;
+             
+        }else{
+          return true;
+        }
+    }
+
+
+
+function eraseRow(){
+
+   var element = document.getElementById("row1");
+
+
+    document.getElementById('productid').value = "";
+    document.getElementById('productclass').value = "";
+    document.getElementById('productbrand').value = "";
+    document.getElementById('productw').value = "";
+
+    document.getElementById("s1").value = "";
+    document.getElementById("s2").value = "";
+    document.getElementById("s3").value = "";
+    document.getElementById("s4").value = "";
+    document.getElementById("s5").value = "";
+    document.getElementById("s6").value = "";
+    document.getElementById("s7").value = "";
+    document.getElementById("s8").value = "";
+    document.getElementById("s9").value = "";
+    document.getElementById("s10").value = "";
+    document.getElementById("s11").value = "";
+    document.getElementById("s12").value = "";
+    document.getElementById("s13").value = "";
+     document.getElementById('rowsku').style.visibility = "hidden";
+
+   
+    element.parentNode.removeChild(element);
+    a=0;
+    
+
+    
+}
+
+    </script>
+
+
+
+
+
+
+
+
+
+    <style type="text/css">
+
+    #trtag tr td input{
+        width: 200px;
+    }
+
+    </style>
+
+<% end %>

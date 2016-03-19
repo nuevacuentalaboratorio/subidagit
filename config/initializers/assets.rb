@@ -1,0 +1,6 @@
+Rails.application.config.assets.precompile += %w( 2bteam/raul.png )
+Rails.application.config.assets.precompile += %w( 2bteam/rosendo_mendoza.png )
+Rails.application.config.assets.precompile += %w( products.css )
+Rails.application.config.assets.precompile += %w( products.js )
+Rails.application.config.assets.precompile += %w( variations.css )
+Rails.application.config.assets.precompile += %w( variations.js )

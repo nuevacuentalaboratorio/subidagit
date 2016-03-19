@@ -1,0 +1,128 @@
+<style type="text/css">
+  
+  .product-image{
+    width: 200px;
+    height: 350px;
+  }
+
+</style>
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Products grid</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="">Home</a>
+            </li>
+            <li class="active">
+                <strong>Products grid</strong>
+            </li>
+            <li>
+              <%= link_to 'Add New Product', new_product_path %>
+
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+
+<br>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+
+            <% @products.each do |product| %>
+            <div class="col-md-3">
+                <div class="ibox">
+                    <div class="ibox-content product-box">
+                           
+                           <%= image_tag product.asset.url, class: "product-image" %>
+                        <div class="product-desc">
+
+                                    <span class="product-price">
+                                       <%= product.price %> $
+                                    </span>
+                            <small class="text-muted">Category</small>
+                           <%= link_to product.title, product, class: "product-name" %>
+
+                            <div class="small m-t-xs">
+                                <%= product.description %>
+                            </div>
+
+                            <div class="m-t text-righ">
+
+                                <p style="text-align:center;"><a href="#" class="btn btn-xs btn-outline btn-primary"><%= product.tags %> <i class="fa fa-long-arrow-right"></i> </a>
+
+
+                                <%= link_to 'Delete', product, method: :delete, data: { confirm: 'Are you sure in delete this product' }, class: "btn btn-xs btn-outline btn-danger" %></p>
+                               
+                              <hr>
+                              
+                               <p style="text-align:center;"><%= localize(product.updated_at, :format => :long) %></p>
+
+                              
+
+
+
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% end %>
+
+           
+      </div>
+  </div>
+
+
+
+
+
+<!--
+<h1>Listing Products</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Tags</th>
+      <th>Images</th>
+      <th>Size</th>
+      <th>Color</th>
+      <th>Inventory</th>
+      <th>Price</th>
+      <th>Sku</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.title %></td>
+        <td><%= product.description %></td>
+        <td><%= product.tags %></td>
+        
+        <td><%= product.size %></td>
+        <td><%= product.color %></td>
+        <td><%= product.inventory %></td>
+        <td><%= product.price %></td>
+        <td><%= product.sku %></td>
+        <td><%= link_to 'Show', product %></td>
+        <td><%= link_to 'Edit', edit_product_path(product) %></td>
+        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+
+  </tbody>
+</table>
+
+<br>
+
+-->

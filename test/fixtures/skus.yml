@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  productid: MyString
+  sku: MyString
+  variant1: MyString
+  variant2: MyString
+  variant3: MyString
+  ean: MyString
+  retailprice: 1.5
+  saleprice: 1.5
+  cost: 1.5
+  inventory: 1.5
+  classification: MyString
+  brand: MyString
+  weight: 1.5
+
+two:
+  productid: MyString
+  sku: MyString
+  variant1: MyString
+  variant2: MyString
+  variant3: MyString
+  ean: MyString
+  retailprice: 1.5
+  saleprice: 1.5
+  cost: 1.5
+  inventory: 1.5
+  classification: MyString
+  brand: MyString
+  weight: 1.5

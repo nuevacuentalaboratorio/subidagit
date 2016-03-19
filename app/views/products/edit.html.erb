@@ -1,0 +1,271 @@
+<style type="text/css">
+    
+    .image-product{
+        width: 60%;
+        height: 350px;
+    }
+
+
+</style>
+<%= form_for(@product) do |f| %>
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Product edit</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="">Home</a>
+            </li>
+            <li>
+                <a>Products</a>
+            </li>
+            <li class="active">
+                <strong>Edit</strong>
+            </li>
+            <li class="active">
+                <strong> <%= @product.title%></strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+
+
+
+
+  <% if @product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+      <% @product.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="wrapper wrapper-content animated fadeInRight ecommerce">
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="tabs-container">
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#tab-1"> Product info</a></li>
+               
+                <li class=""><a data-toggle="tab" href="#tab-4"> Images</a></li>
+            </ul>
+            <div class="tab-content">
+                <div id="tab-1" class="tab-pane active">
+                    <div class="panel-body">
+
+                        <fieldset class="form-horizontal">
+                            <div class="form-group"><label class="col-sm-2 control-label">Name:</label>
+                                <div class="col-sm-10">
+                                    <%= f.text_area :title, class: "form-control", placeholder: "Produt Name", :required => true %>
+                                
+
+                                </div>
+                            </div>
+
+                            <div class="form-group"><label class="col-sm-2 control-label">Price:</label>
+                                <div class="col-sm-10">
+
+                              
+                                <%= f.text_field :price, class: "form-control", placeholder: "Price", :required => true %>
+
+                                </div>
+                            </div>
+                            <div class="form-group"><label class="col-sm-2 control-label">Description:</label>
+                                <div class="col-sm-10">
+                                     <%= f.text_area :description, class: "form-control", :required => true %>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+                            <div class="form-group"><label class="col-sm-2 control-label">Tags:</label>
+
+                                <div class="col-sm-10">
+
+                                 <%= f.text_area :tags, class: "form-control", placeholder: "Product Tags", :required => true %>
+
+                                </div>
+                            </div>
+
+
+
+                        </fieldset>
+
+                    </div>
+                </div>
+               
+                <div id="tab-4" class="tab-pane">
+                    <div class="panel-body">
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-stripped">
+                                <thead>
+                                <tr>
+                                    <th>
+                                        Image preview
+                                    </th>
+                                    <th>
+                                        Image url
+                                    </th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td style="text-align:center;">
+                                          
+                                        <p>
+
+                                            <div  class="upload-preview">
+                                               <%= image_tag @product.asset.url, class: "image-product" if @product.asset.stored? %>
+                                            </div>
+
+                                        </p>
+                                         
+                                    </td>
+
+
+                                    <td>
+                                         <%= f.file_field :asset, class: "file", :required => true%>
+
+                                         
+                                    </td>
+                                </tr>
+
+
+
+
+                                <tr>
+                                    <td style="text-align:center;">
+                                          
+                                        <p>
+
+                                            <div  class="upload-preview2">
+
+                                                <%= image_tag @product.asset2.url, class: "image-product" if @product.asset2.stored? %>
+                                            </div>
+
+                                        </p>
+                                         
+                                    </td>
+
+
+                                    <td>
+                                         <%= f.file_field :asset2, class: "file2", :required => true %>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="text-align:center;">
+                                          
+                                        <p>
+
+                                            <div  class="upload-preview3">
+                                                <%= image_tag @product.asset3.url, class: "image-product" if @product.asset3.stored? %>
+                                            </div>
+
+                                        </p>
+                                         
+                                    </td>
+
+
+                                    <td>
+                                         <%= f.file_field :asset3, class: "file3", :required => true%>
+                                    </td>
+                                </tr>
+                            
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+       
+    </div>
+
+</div>
+<br>
+
+<%= f.submit 'Save', :class => 'btn btn-success' %> <%= link_to 'Back', products_path, class: "btn btn-primary" %>
+<hr>
+</div>
+<br>
+
+<% end %>
+
+
+<script type="text/javascript">
+   
+   $(document).ready(function(){
+    var preview = $(".upload-preview img");
+
+    $(".file").change(function(event){
+       var input = $(event.currentTarget);
+       var file = input[0].files[0];
+       var reader = new FileReader();
+       reader.onload = function(e){
+           image_base64 = e.target.result;
+           preview.attr("src", image_base64);
+       };
+       reader.readAsDataURL(file);
+    });
+}); 
+
+</script>
+
+<script type="text/javascript">
+   
+   $(document).ready(function(){
+    var preview2 = $(".upload-preview2 img");
+
+    $(".file2").change(function(event){
+       var input = $(event.currentTarget);
+       var file = input[0].files[0];
+       var reader = new FileReader();
+       reader.onload = function(e){
+           image_base64 = e.target.result;
+           preview2.attr("src", image_base64);
+       };
+       reader.readAsDataURL(file);
+    });
+}); 
+
+</script>
+
+<script type="text/javascript">
+   
+   $(document).ready(function(){
+    var preview3 = $(".upload-preview3 img");
+
+    $(".file3").change(function(event){
+       var input = $(event.currentTarget);
+       var file = input[0].files[0];
+       var reader = new FileReader();
+       reader.onload = function(e){
+           image_base64 = e.target.result;
+           preview3.attr("src", image_base64);
+       };
+       reader.readAsDataURL(file);
+    });
+}); 
+
+</script>

@@ -1,0 +1,49 @@
+<br><br><br>
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="text-center m-t-lg" style="margin-top:-5px;">
+
+
+                <% if user_signed_in? %>
+                 <div class="col-lg-12">
+                    
+
+                    <div class="row">
+                       <h2>Welcome</h2>
+                         <h2>to</h2>
+                         <h2>2b e-Commerce Admin Panel</h2>
+                       <p class="notice"><%= notice %></p>
+                       <p class="alert"><%= alert %></p>
+
+                    </div>
+                   
+                </div>
+                <%else%>
+                    
+                    <div class="container">
+                    <img id="blogo" alt="image" src="<%= image_path('2blogo.png') %>">
+                    <h2>Welcome, if you want go to the</h2>
+                    <h2>2b e-Commerce Admin Panel</h2>
+                    <h2>Please click on  <%= link_to('Login', new_user_session_path, :method=>'new') %></h2>
+                    <h2>if you dont have any account</h2>
+                    <h2>Please click on  <a href="/users/sign_up">Sign Up</a></h2>
+                    </div>
+                   
+
+                <%end%>
+
+
+
+               
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+

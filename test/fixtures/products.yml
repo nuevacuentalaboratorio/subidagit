@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyText
+  description: MyText
+  tags: MyText
+  images: MyText
+  size: MyText
+  color: MyText
+  inventory: MyText
+  price: 1.5
+  sku: MyText
+
+two:
+  title: MyText
+  description: MyText
+  tags: MyText
+  images: MyText
+  size: MyText
+  color: MyText
+  inventory: MyText
+  price: 1.5
+  sku: MyText
