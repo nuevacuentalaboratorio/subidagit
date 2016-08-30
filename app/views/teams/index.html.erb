@@ -1,0 +1,94 @@
+<style type="text/css">
+    
+#email{
+
+    color:#19af91;
+
+}
+
+
+</style>
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-9">
+        <h2>Team</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="/teams">Home</a>
+        </li>
+        <li>
+            Members
+        </li>
+
+        <li>
+          <strong><%= link_to 'Add new member', new_team_path %></strong>
+        </li>
+    </ol>
+</div>
+        </div>
+<div class="wrapper wrapper-content animated fadeInRight">
+<div class="row">
+
+
+<% @teams.each do |team| %>
+
+<div class="col-lg-4">
+<div class="contact-box">
+   
+    <div class="col-sm-4">
+        <div class="text-center">
+            <img alt="image" class="img-circle m-t-xs img-responsive" src="<%= team.foto.url %>">
+            <div class="m-t-xs font-bold"><%= team.cargo %></div>
+        </div>
+    </div>
+    <div class="col-sm-8" style="text-align:center;">
+        <h3><strong><%= team.nombre %></strong></h3>
+        <p style="opacity:0;"><i class="fa fa-map-marker"></i></p>
+        <address>
+            <strong><%= team.empresa %></strong><br>
+            <i class="fa fa-phone" aria-hidden="true"></i>
+         <%= team.telefono %>
+        </address>
+    </div>
+    <div id="email" class="clearfix" style="text-align:center;"> <%= team.email %><br><br>
+                <%= link_to "Show", team, class: "btn btn-xs btn-primary" %>
+
+                <%= link_to 'Delete', team, method: :delete, data: { confirm: 'Are you sure in delete this member' }, class: "btn btn-xs btn-danger" %>
+    </div>
+
+</div>
+</div>
+
+<% end %>
+
+
+  
+
+
+
+
+
+
+
+
+        </div>
+        </div>
+
+<% content_for :javascript do %>
+
+<script type="text/javascript">
+
+$(function () {
+
+    $('.contact-box').each(function () {
+        animationHover(this, 'pulse');
+    });
+
+});
+
+</script>
+
+<% end %>
+
+
+

@@ -1,0 +1,33 @@
+<%= form_for(@archivofolder) do |f| %>
+  <% if @archivofolder.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@archivofolder.errors.count, "error") %> prohibited this archivofolder from being saved:</h2>
+
+      <ul>
+      <% @archivofolder.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <h2 style="margin-left:15px;"><i class="fa fa-plus" aria-hidden="true"></i>
+  Agregar Archivo</h2>
+  <div class="col-lg-12">
+    
+    <%= f.text_field :nombre, class: "form-control", placeholder: "Nombre" , :required => true %>
+  </div>
+  <div class="col-lg-12" style="margin-top:15px;">
+
+    <%= f.text_field :autor, class: "form-control", placeholder: "Autor" , :required => true %>
+  </div>
+
+
+  <div class="col-lg-12" style="margin-top:15px;">
+  <%= submit_tag "Actualizar", class: "btn btn-primary col-lg-3"  %>
+
+  <a href="/folders/1" class="btn btn-warning col-lg-3">Atrás</a>
+  </div>
+<% end %>
+
+

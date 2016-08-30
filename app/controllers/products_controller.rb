@@ -1,10 +1,38 @@
+require 'httparty'
+
 class ProductsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   # GET /products
   # GET /products.json
+
+  def jsontodb
+    @products = Product.abc
+
+    #render :json => @products
+    redirect_to "/products"
+
+  end
+
+  def import
+    Product.import(params[:file])
+    redirect_to "/products", notice: "Products imported."
+  end
+
   def index
+
     @products = Product.all
+    @mensaje = "";
+    @products = Product.order(:title)
+    respond_to do |format|
+    format.html # don't forget if you pass html
+    format.xls { send_data(@products.to_xls) }
+    # format.xls {
+    #   filename = "Posts-#{Time.now.strftime("%Y%m%d%H%M%S")}.xls"
+    #   send_data(@posts.to_xls, :type => "text/xls; charset=utf-8; header=present", :filename => filename)
+    # }
+  end
    
   end
 
@@ -14,6 +42,15 @@ class ProductsController < ApplicationController
 
      @variations = @product.variations
      @skus = @product.skus
+
+    respond_to do |format|
+    format.html # don't forget if you pass html
+    format.xls { send_data(@skus.to_xls) }
+    # format.xls {
+    #   filename = "Posts-#{Time.now.strftime("%Y%m%d%H%M%S")}.xls"
+    #   send_data(@posts.to_xls, :type => "text/xls; charset=utf-8; header=present", :filename => filename)
+    # }
+  end
 
   end
 

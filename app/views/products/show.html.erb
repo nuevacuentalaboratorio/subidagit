@@ -23,6 +23,11 @@
             <li class="active">
                 <strong>Product detail</strong>
             </li>
+            
+              
+               
+
+            
         </ol>
     </div>
     <div class="col-lg-2">
@@ -56,19 +61,40 @@
 
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner" role="listbox">
+
+                 <% if @product.imagen1 == nil %>
+
+
+
+
                   <div class="item active" style="text-align:center;">
-                    <p><%= image_tag @product.asset.url, class: "image-product" %></p>
+                    <p><img alt="image"  class: "product-image"  src="<%= image_url 'maniki.jpg' %>" style="width:350px; height:350px;"/></p>
                   </div>
 
                   <div class="item" style="text-align:center;">
-                    <p> <%= image_tag @product.asset2.url, class: "image-product" %></p>
-                     
+                    <p><img alt="image"  class: "product-image"  src="<%= image_url 'maniki.jpg' %>" style="width:350px; height:350px;"/></p>
+                  </div>
+
+                 
+                  <div class="item" style="text-align:center;">
+                    <p><img alt="image"  class: "product-image"  src="<%= image_url 'maniki.jpg' %>" style="width:350px; height:350px;"/></p>
+                  </div>
+                 
+                                     
+                
+                 <%else%>
+                  <div class="item active" style="text-align:center;">
+                    <p><img alt="image"  class: "product-image"  src="<%= @product.imagen1 %>" style="width:250px; height:350px;"/></p>
+                  </div>
+
+                  <div class="item" style="text-align:center;">
+                    <p><img alt="image"  class: "product-image"  src="<%= @product.imagen2 %>" style="width:250px; height:350px;"/></p>
                   </div>
                 
                   <div class="item" style="text-align:center;">
-                    <p> <%= image_tag @product.asset3.url, class: "image-product" %></p>
+                    <p><img alt="image"  class: "product-image"  src="<%= @product.imagen3 %>" style="width:250px; height:350px;"/></p>
                   </div>
-
+                  <%end%>
                 </div>
 
                 <!-- Left and right controls -->
@@ -94,8 +120,9 @@
                         </h2>
                         
                         <div class="m-t-md">
-                            <h2 class="product-main-price">$ <%= @product.price%> <small class="text-muted">Exclude Tax</small> </h2>
+                            <h2 class="product-main-price">$ 153.50 <small class="text-muted">Exclude Tax</small> |                        <a id="linkshopify" href="https://annchery.com.co/products/<%=@product.handle%>" target="_blank" class="btn btn-xs btn-outline btn-primary">View in Shopify</a> </h2>
                         </div>
+
                         <hr>
 
                         <h4>Product description</h4>
@@ -108,15 +135,14 @@
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                             tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
                             quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            consequat.
                         </div>
                         <dl class="small m-t-md">
                             <dt>Tags</dt>
                             <dd><%= @product.tags %></dd>
                           
                         </dl>
+
                         <hr>
 
                         <div>
@@ -140,7 +166,9 @@
             </div>
             <div class="ibox-footer">
                             <span class="pull-right">
-                                 <%= link_to 'Edit', edit_product_path, class: "btn btn-success", id: "btnedit" %> 
+                            <% if can? :update, @product %>
+                              <%= link_to 'Edit', edit_product_path, class: "btn btn-success", id: "btnedit" %> 
+                            <% end %>
 
                                  <%= link_to 'Back', products_path, class: "btn btn-primary",  id: "btnback" %>
                             </span>
@@ -284,6 +312,8 @@
   <br>
 
     <%= f.submit "Save", :onClick => "return guardar()" , class: "btn btn-danger col-lg-2 col-md-12 col-sm-12 col-xs-12" %>
+
+    <%= link_to 'Export Excel File',  product_skus_path(@product, :format => :xls), :id => 'botonExport', class: "btn btn-primary col-lg-2 col-md-12 col-sm-12 col-xs-12"  %>
 
     
 
@@ -485,18 +515,24 @@
 
   </div>
 
-    <input type="image" id="btnExport" src="<%= image_path('excel.png') %>" />
-    
+    <!--<input type="image" id="btnExport" src="<%= image_path('excel.png') %>" />
   <br>
+  </div>-->
 
-
-  </div>
 </div>
 </div>
 
 <style>
 
+  #linkshopify{
+    font-size:15px;
+  }
 
+  #botonExport{
+
+    margin-left:10px;
+  
+  }
   
   #dvData{
     opacity:0;
@@ -509,6 +545,7 @@
     height: 30px;
     margin-bottom:8px;
     margin-top:15px;
+    background: ul(<%= image_path('excel.png') %>);
   }
 
 

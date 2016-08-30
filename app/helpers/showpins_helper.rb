@@ -1,0 +1,2 @@
+module ShowpinsHelper
+end

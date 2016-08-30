@@ -6,13 +6,13 @@
             <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
             <form role="search" class="navbar-form-custom" method="post" action="">
                 <div class="form-group">
-                    <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search"/>
+                    <input type="text" placeholder="Buscar algo..." class="form-control" name="top-search" id="top-search"/>
                 </div>
             </form>
         </div>
         <ul class="nav navbar-top-links navbar-right">
             <li>
-                <p> <strong><%= current_user.sign_in_count %></strong> Visits | </p>
+                <p> <strong><%= current_user.sign_in_count %></strong> Visitas | </p>
             </li>
             <li>
                 <span class="m-r-sm text-muted welcome-message" data-i18n="topnav.welcometext"><%= current_user.email %></span>
@@ -119,7 +119,7 @@
             </li>
             <li>
                 
-                      <%= link_to('Logout', destroy_user_session_path, :method=>'delete') %>
+                      <%= link_to('Cerrar Sesión', destroy_user_session_path, :method=>'delete') %>
                 
             </li>
 

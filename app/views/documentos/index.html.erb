@@ -1,0 +1,611 @@
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-9">
+        <h2>File Manager</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="<%= url_for :controller => 'dashboards', :action => 'dashboard_1' %>">Home</a>
+        </li>
+        <li>
+            App Views
+        </li>
+        <li class="active">
+            <strong>File Manager</strong>
+        </li>
+        <li><%= link_to 'Subir documento', new_documento_path %></li>
+        <li><label><input id="radiolista" type="radio" name="optradio">Lista</label></li>
+        <li><label><input id="radioicono" type="radio" name="optradio">Iconos</label></li>
+        <li>
+<%= hidden_field_tag :direction, params[:direction] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+<%= will_paginate @documentos %>
+            
+        </li>
+    </ol>
+</div>
+</div>
+   
+
+<!-- documentos grandes -->
+
+<div id="documentosgrandes" class="wrapper wrapper-content animated fadeInRight">
+<div class="row">
+
+<div class="col-lg-12 animated fadeInRight">
+<div class="row">
+<div class="col-lg-12">
+<!--
+<div class="file-box">
+    <div class="file">
+        <a href="#">
+            <span class="corner"></span>
+
+            <div class="icon">
+                <i class="fa fa-file"></i>
+            </div>
+            <div class="file-name">
+                Document_2014.doc
+                <br />
+                <small>Added: Jan 11, 2014</small>
+            </div>
+        </a>
+    </div>
+
+</div>
+<div class="file-box">
+    <div class="file">
+        <a href="#">
+            <span class="corner"></span>
+
+            <div class="image">
+                <img alt="image" class="img-responsive" src="<%= image_path('p1.jpg') %>">
+            </div>
+            <div class="file-name">
+                Italy street.jpg
+                <br />
+                <small>Added: Jan 6, 2014</small>
+            </div>
+        </a>
+
+    </div>
+</div>
+<div class="file-box">
+    <div class="file">
+        <a href="#">
+            <span class="corner"></span>
+
+            <div class="image">
+                <img alt="image" class="img-responsive" src="<%= image_path('p2.jpg') %>">
+            </div>
+            <div class="file-name">
+                My feel.png
+                <br />
+                <small>Added: Jan 7, 2014</small>
+            </div>
+        </a>
+    </div>
+</div>
+<div class="file-box">
+    <div class="file">
+        <a href="#">
+            <span class="corner"></span>
+
+            <div class="icon">
+                <i class="fa fa-music"></i>
+            </div>
+            <div class="file-name">
+                Michal Jackson.mp3
+                <br />
+                <small>Added: Jan 22, 2014</small>
+            </div>
+        </a>
+    </div>
+</div>
+<div class="file-box">
+    <div class="file">
+        <a href="#">
+            <span class="corner"></span>
+
+            <div class="image">
+                <img alt="image" class="img-responsive" src="<%= image_path('p3.jpg') %>">
+            </div>
+            <div class="file-name">
+                Document_2014.doc
+                <br />
+                <small>Added: Fab 11, 2014</small>
+            </div>
+        </a>
+    </div>
+</div>
+<div class="file-box">
+    <div class="file">
+        <a href="#">
+            <span class="corner"></span>
+
+            <div class="icon">
+                <i class="img-responsive fa fa-film"></i>
+            </div>
+            <div class="file-name">
+                Monica's birthday.mpg4
+                <br />
+                <small>Added: Fab 18, 2014</small>
+            </div>
+        </a>
+    </div>
+</div>
+<div class="file-box">
+    <a href="#">
+        <div class="file">
+            <span class="corner"></span>
+
+            <div class="icon">
+                <i class="fa fa-bar-chart-o"></i>
+            </div>
+            <div class="file-name">
+                Annual report 2014.xls
+                <br />
+                <small>Added: Fab 22, 2014</small>
+            </div>
+        </div>
+    </a>
+</div>
+<div class="file-box">
+    <div class="file">
+        <a href="#">
+            <span class="corner"></span>
+
+            <div class="icon">
+                <i class="fa fa-file"></i>
+            </div>
+            <div class="file-name">
+                Document_2014.doc
+                <br />
+                <small>Added: Jan 11, 2014</small>
+            </div>
+        </a>
+    </div>
+
+</div>
+<div class="file-box">
+    <div class="file">
+        <a href="#">
+            <span class="corner"></span>
+
+            <div class="image">
+                <img alt="image" class="img-responsive" src="<%= image_path('p1.jpg') %>">
+            </div>
+            <div class="file-name">
+                Italy street.jpg
+                <br />
+                <small>Added: Jan 6, 2014</small>
+            </div>
+        </a>
+
+    </div>
+</div>
+<div class="file-box">
+    <div class="file">
+        <a href="#">
+            <span class="corner"></span>
+
+            <div class="image">
+                <img alt="image" class="img-responsive" src="<%= image_path('p2.jpg') %>">
+            </div>
+            <div class="file-name">
+                My feel.png
+                <br />
+                <small>Added: Jan 7, 2014</small>
+            </div>
+        </a>
+    </div>
+</div>
+<div class="file-box">
+    <div class="file">
+        <a href="#">
+            <span class="corner"></span>
+
+            <div class="icon">
+                <i class="fa fa-music"></i>
+            </div>
+            <div class="file-name">
+                Michal Jackson.mp3
+                <br />
+                <small>Added: Jan 22, 2014</small>
+            </div>
+        </a>
+    </div>
+</div>
+<div class="file-box">
+    <div class="file">
+        <a href="#">
+            <span class="corner"></span>
+
+            <div class="image">
+                <img alt="image" class="img-responsive" src="<%= image_path('p3.jpg') %>">
+            </div>
+            <div class="file-name">
+                Document_2014.doc
+                <br />
+                <small>Added: Fab 11, 2014</small>
+            </div>
+        </a>
+    </div>
+</div>
+<div class="file-box">
+    <div class="file">
+        <a href="#">
+            <span class="corner"></span>
+
+            <div class="icon">
+                <i class="img-responsive fa fa-film"></i>
+            </div>
+            <div class="file-name">
+                Monica's birthday.mpg4
+                <br />
+                <small>Added: Fab 18, 2014</small>
+            </div>
+        </a>
+    </div>
+</div>
+<div class="file-box">
+    <a href="#">
+        <div class="file">
+            <span class="corner"></span>
+
+            <div class="icon">
+                <i class="fa fa-bar-chart-o"></i>
+            </div>
+            <div class="file-name">
+                Annual report 2014.xls
+                <br />
+                <small>Added: Fab 22, 2014</small>
+            </div>
+        </div>
+    </a>
+</div>
+<div class="file-box">
+    <div class="file">
+        <a href="#">
+            <span class="corner"></span>
+
+            <div class="icon">
+                <i class="fa fa-file"></i>
+            </div>
+            <div class="file-name">
+                Document_2014.doc
+                <br />
+                <small>Added: Jan 11, 2014</small>
+            </div>
+        </a>
+    </div>
+
+</div>
+<div class="file-box">
+    <div class="file">
+        <a href="#">
+            <span class="corner"></span>
+
+            <div class="image">
+                <img alt="image" class="img-responsive" src="<%= image_path('p1.jpg') %>">
+            </div>
+            <div class="file-name">
+                Italy street.jpg
+                <br />
+                <small>Added: Jan 6, 2014</small>
+            </div>
+        </a>
+
+    </div>
+</div>
+<div class="file-box">
+    <div class="file">
+        <a href="#">
+            <span class="corner"></span>
+
+            <div class="image">
+                <img alt="image" class="img-responsive" src="<%= image_path('p2.jpg') %>">
+            </div>
+            <div class="file-name">
+                My feel.png
+                <br />
+                <small>Added: Jan 7, 2014</small>
+            </div>
+        </a>
+    </div>
+</div>
+<div class="file-box">
+    <div class="file">
+        <a href="#">
+            <span class="corner"></span>
+
+            <div class="icon">
+                <i class="fa fa-music"></i>
+            </div>
+            <div class="file-name">
+                Michal Jackson.mp3
+                <br />
+                <small>Added: Jan 22, 2014</small>
+            </div>
+        </a>
+    </div>
+</div>
+<div class="file-box">
+    <div class="file">
+        <a href="#">
+            <span class="corner"></span>
+
+            <div class="image">
+                <img alt="image" class="img-responsive" src="<%= image_path('p3.jpg') %>">
+            </div>
+            <div class="file-name">
+                Document_2014.doc
+                <br />
+                <small>Added: Fab 11, 2014</small>
+            </div>
+        </a>
+    </div>
+</div>
+<div class="file-box">
+    <div class="file">
+        <a href="#">
+            <span class="corner"></span>
+
+            <div class="icon">
+                <i class="img-responsive fa fa-film"></i>
+            </div>
+            <div class="file-name">
+                Monica's birthday.mpg4
+                <br />
+                <small>Added: Fab 18, 2014</small>
+            </div>
+        </a>
+    </div>
+</div>
+<div class="file-box">
+    <a href="#">
+        <div class="file">
+            <span class="corner"></span>
+
+            <div class="icon">
+                <i class="fa fa-bar-chart-o"></i>
+            </div>
+            <div class="file-name">
+                Annual report 2014.xls
+                <br />
+                <small>Added: Fab 22, 2014</small>
+            </div>
+        </div>
+    </a>
+</div>
+-->
+<div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-content">
+                   
+
+                    <div class="input-group">
+                        <%= form_tag documentos_path, :method => 'get', :id => "documentos_search" do %>
+                        
+                        <div class="col-lg-8">
+                        <%= text_field_tag :search, params[:search], class: 'input form-control', :placeholder => "Buscar documento" %>
+                       </div>
+
+                       <div class="col-lg-4">
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn btn-primary"> <i class="fa fa-search"></i> Buscar</button>
+                       </span>
+
+                        </div>
+
+                        <% end %>
+
+                    </div>
+
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+<% @documentos.each do |documento| %>
+
+<div class="col-lg-4 col-sm-12 col-xs-12">
+    
+        <div class="file">
+            <span class="corner"></span>
+
+
+            <div class="icon">
+                
+                <% if documento.archivo.ext == 'pdf' %>    
+                <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                <%elsif documento.archivo.ext == 'doc'%>
+                <i class="fa fa-file-word-o" aria-hidden="true"></i>
+                <%elsif documento.archivo.ext == 'txt'%>
+                <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                <%elsif documento.archivo.ext == 'jpg' or documento.archivo.ext == 'png' %>
+                <i class="fa fa-file-image-o" aria-hidden="true"></i>
+                <%elsif documento.archivo.ext == 'xls' or documento.archivo.ext == 'csv'%>
+                <i class="fa fa-file-excel-o" aria-hidden="true"></i>
+                <%elsif documento.archivo.ext == 'zip' or documento.archivo.ext == 'rar' or documento.archivo.ext == 'tar'%>
+                <i class="fa fa-file-archive-o" aria-hidden="true"></i>
+                <%end%>
+
+            </div>
+            <div class="file-name">
+            
+            <div class="col-lg-4">
+               
+
+                                        <% if documento.archivo.ext == 'pdf' or documento.archivo.ext == 'jpg' or documento.archivo.ext == 'png' or documento.archivo.ext == 'txt'%>
+                                          <a href="<%= documento.archivo.url %>" class="btn btn-xs btn-outline btn-success" style="width:70px;">Ver</a>
+
+                                        <%else%>
+                                         <a  style="width:70px;" href="<%= documento.archivo.url %>" class="btn btn-xs btn-outline btn-success">Descargar</a>
+                                        <%end%>
+
+
+            </div>
+            <div class="col-lg-4">
+                <%= link_to 'Editar', edit_documento_path(documento), class: 'btn btn-xs btn-outline btn-primary', :style => "width:70px;" %>
+            </div>
+            <div class="col-lg-4">
+                <%= link_to 'Eliminar', documento, method: :delete, data: { confirm: 'Esta seguro de eliminar el documento?' }, class: 'btn btn-xs btn-outline btn-danger' %>
+
+            </div>
+           
+          
+            <div class="col-lg-12" style="margin-top:5px; padding-bottom:5px;"><strong><%= documento.nombre%>.<%= documento.archivo.ext%></strong></div>
+             <br> <br>
+                
+           
+            </div>
+
+        </div>
+   
+ 
+</div>
+
+
+
+<% end %>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- documentos grandes -->
+
+
+<div id="documentosenlista" class="wrapper wrapper-content  animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-content">
+                   
+                  
+                    <div class="input-group">
+                        <input type="text" placeholder="Buscar documento " class="input form-control">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn btn-primary"> <i class="fa fa-search"></i> Buscar</button>
+                        </span>
+                    </div>
+                    <div class="clients-list">
+
+
+                        <div class="tab-content">
+                            <div id="tab-1" class="tab-pane active">
+                                <div class="full-height-scroll">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-hover">
+                                            <tbody>
+
+                                    <thead>
+                                      <tr>
+                                       <th>documento</th>
+                                        <th>Autor</th>
+                                        
+                                        
+                                    
+                                        <th>Fecha</th>
+                                        <th>Tipo</th>
+                                      
+                                        <th colspan="3"></th>
+                                      </tr>
+                                    </thead>                                  
+
+                                  <% @documentos.each do |documento| %>
+                                     <tr>
+                                         <td><%= documento.nombre %>.<%= documento.archivo.ext%></td>
+                                          <td><%= documento.autor %></td>
+                                         
+                                          <td><%= documento.created_at.strftime("%Y-%m-%d") %></td>
+                                          <td><%= documento.archivo.ext%></td>
+                                          <td>
+
+
+                                        <% if documento.archivo.ext == 'pdf' or documento.archivo.ext == 'jpg' or documento.archivo.ext == 'png' or documento.archivo.ext == 'txt'%>
+                                          <a href="<%= documento.archivo.url %>" class="btn btn-xs btn-outline btn-primary" style="width:100px;">Ver</a>
+
+                                        <%else%>
+                                         <a  style="width:100px;" href="<%= documento.archivo.url %>" class="btn btn-xs btn-outline btn-primary">Descargar</a>
+                                        <%end%>
+
+
+
+
+                                          </td>
+
+
+
+                                          <td><%= link_to 'Editar', edit_documento_path(documento),  class: "btn btn-xs btn-outline btn-success", :style => "width:100px;" %></td>
+                                          <td><%= link_to 'Eliminar', documento, method: :delete, data: { confirm: 'Are you sure?' },  class: "btn btn-xs btn-outline btn-danger" , :style => "width:100px;" %></td>
+
+                                       
+                                          
+
+                                    </tr>
+                                
+                                <!-- javascript visualizar pdf -->
+
+
+
+                                <!-- javascript visualizar pdf -->
+
+                                  <% end %>
+
+                                            
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="visorpdf" class="col-lg-12">
+    
+<iframe id="iframepdf" src="" style="border: 0" width="100%" height="1000" frameborder="0" scrolling="no"></iframe>
+
+</div>
+<script>
+    $("#radiolista").prop("checked", true);
+    $("#radioicono").prop("checked", false);
+    $("#documentosgrandes").hide();
+    $("#visorpdf").hide();
+
+    $("#radiolista").change(function () {
+        $("#documentosgrandes").hide();
+        $("#documentosenlista").show();
+        $("#visorpdf").hide();
+    });
+
+    $("#radioicono").change(function () {
+        $("#documentosgrandes").show();
+        $("#documentosenlista").hide();
+        $("#visorpdf").hide();
+    });
+
+    function verpdf(){
+
+
+        $("#documentosgrandes").hide();
+        $("#documentosenlista").hide();
+        $("#visorpdf").show();
+        $("#radiolista").prop("checked", false);
+        $("#radioicono").prop("checked", false);
+    }
+
+</script>

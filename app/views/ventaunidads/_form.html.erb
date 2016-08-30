@@ -1,0 +1,25 @@
+<%= form_for(@ventaunidad) do |f| %>
+  <% if @ventaunidad.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@ventaunidad.errors.count, "error") %> prohibited this ventaunidad from being saved:</h2>
+
+      <ul>
+      <% @ventaunidad.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :mes %><br>
+    <%= f.text_field :mes %>
+  </div>
+  <div class="field">
+    <%= f.label :valor %><br>
+    <%= f.number_field :valor %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

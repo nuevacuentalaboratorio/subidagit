@@ -1,21 +1,75 @@
 Myapp::Application.routes.draw do
 
+
+  
+
+
+
+  resources :brandteams
+  resources :accounts
+  resources :permisos
+  resources :operacions
+  resources :seccions
+  resources :rols
+  resources :showrooms do
+      resources :showpins
+      resources :archivofolders
+  end
+  resources :teams
+  resources :archivofolders
+  resources :documentos
+  resources :folders do
+    resources :archivofolders
+  end
+  resources :payments do
+    collection {post :import}
+  end
+
+  
+  resources :ventaunidads do
+    collection {post :import}
+  end
+  
+  resources :channels
+
+
+
+  resources :skugraphs do
+    collection {post :import}
+  end
+  
+  resources :velocidaddiaria
+  resources :archivos do
+    get 'pdf', :on => :collection
+  end
+  
+  resources :documents
+  resources :assets
     devise_for :users
 
  # devise_scope :user do
   #get "sign_out", to: "devise/sessions#destroy"
 #end
+# Session routes for Authenticatable (default)
 
+as :user do
+  get 'users/profile', :to => 'devise/registrations#edit'
+end
+resources :skus
+  #{:controller=>"devise/sessions", :action=>"destroy"}
+
+  get 'products/jsontodb'
   resources :users
   resources :products do
     resources :variations
     resources :skus
+    collection {post :import}
   end
 
   # You can have the root of your site routed with "root"
   root to: 'home#index'
 
-  
+
   # All routes
   get "dashboards/dashboard_1"
   get "dashboards/dashboard_2"

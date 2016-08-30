@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @archivo.nombre %>
+</p>
+
+<p>
+  <strong>Autor:</strong>
+  <%= @archivo.autor %>
+</p>
+<p>
+  <strong>path:</strong>
+  <%= @var2 %>
+</p>
+
+
+<%= link_to 'Edit', edit_archivo_path(@archivo) %> |
+<%= link_to 'Back', archivos_path %>
+
+<script>
+	
+	alert(<%= @archivo.autor %>);
+
+</script>

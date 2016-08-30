@@ -1,0 +1,96 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-9">
+        <br>
+        <ol class="breadcrumb">
+        <li>
+                <a href="/showrooms">Home</a>
+        </li>
+
+        <li >
+            Showrooms
+        </li>
+
+         <% if can? :create, Showroom %>
+        <li>
+            <strong><%= link_to 'Add New Showroom', new_showroom_path %></strong>
+
+        </li>
+        <%end%>
+       
+    </ol>
+</div>
+</div>
+
+<br>
+<div class="row">
+
+<% @showrooms.each do |show| %>
+
+    <div class="col-lg-4">
+        <div class="widget-head-color-box p-lg text-center" style=" background-color:#436871; color:white;">
+
+
+
+
+        
+
+
+
+            <div class="m-b-md">
+                <h2 class="font-bold no-margins">
+                   <%= show.descripcion %>
+                </h2>
+               
+
+                
+               
+            </div>
+            <img src="<%= show.portada.url %>" class="img-circle circle-border m-b-md" alt="profile" style="width:150px; height:150px;">
+            <div>
+                
+                <span><strong>Modulo(s):</strong> <%= show.modulo %></span> 
+                
+            </div>
+        </div>
+        <div class="widget-text-box">
+            <h4 class="media-heading"><i class="fa fa-map-marker" aria-hidden="true"></i>  Direccion: </h4>
+            <p><%= show.direccion %></p>
+
+            <h4 class="media-heading"><i class="fa fa-clock-o" aria-hidden="true"></i>
+            Horario: </h4>
+            <p><%= show.horario %></p>
+
+            <h4 class="media-heading"><i class="fa fa-phone" aria-hidden="true"></i>
+
+            Teléfono: </h4>
+            <p><%= show.telefono %></p>
+            
+            <div class="text-right">
+               
+
+
+                <%= link_to "Show", show, class: "btn btn-xs btn-primary" %>
+                
+                <% if can? :delete, Showroom %>
+                <%= link_to 'Delete', show, method: :delete, data: { confirm: 'Are you sure in delete this showroom' }, class: "btn btn-xs btn-danger" %>
+                <%end%>
+
+                
+            </div>
+        </div>
+    </div>
+
+    <% end %>
+
+
+</div>
+
+
+ 
+
+
+
+
+
+<br><br><br><br>
+    

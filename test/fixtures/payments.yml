@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  anual: 1.5
+  ultimomes: 1.5
+  porcentaje: 1
+
+two:
+  anual: 1.5
+  ultimomes: 1.5
+  porcentaje: 1

@@ -1,0 +1,21 @@
+<%= form_for(@showpin) do |f| %>
+  <% if @showpin.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@showpin.errors.count, "error") %> prohibited this showpin from being saved:</h2>
+
+      <ul>
+      <% @showpin.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nota %><br>
+    <%= f.text_field :nota %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

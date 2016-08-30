@@ -132,7 +132,10 @@
                                         <p>
 
                                             <div  class="upload-preview">
+                                               <% if @product.asset == nil %>
+                                               <%else%>
                                                <%= image_tag @product.asset.url, class: "image-product" if @product.asset.stored? %>
+                                               <%end%>
                                             </div>
 
                                         </p>
@@ -156,8 +159,11 @@
                                         <p>
 
                                             <div  class="upload-preview2">
+                                                <% if @product.asset == nil %>
 
+                                                <%else%>
                                                 <%= image_tag @product.asset2.url, class: "image-product" if @product.asset2.stored? %>
+                                                <%end%>
                                             </div>
 
                                         </p>
@@ -176,7 +182,11 @@
                                         <p>
 
                                             <div  class="upload-preview3">
+                                                <% if @product.asset == nil %>
+
+                                                <%else%>
                                                 <%= image_tag @product.asset3.url, class: "image-product" if @product.asset3.stored? %>
+                                                <%end%>
                                             </div>
 
                                         </p>

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @archivofolder.nombre %>
+</p>
+
+<p>
+  <strong>Autor:</strong>
+  <%= @archivofolder.autor %>
+</p>
+
+<%= link_to 'Edit', edit_archivofolder_path(@archivofolder) %> |
+<%= link_to 'Back', archivofolders_path %>

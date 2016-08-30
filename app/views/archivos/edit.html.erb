@@ -1,0 +1,38 @@
+<h1>Editing Archivo</h1>
+
+<%= form_for @archivo, :html => {:multipart => true} do |f| %> 
+  <% if @archivo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@archivo.errors.count, "error") %> prohibited this archivo from being saved:</h2>
+
+      <ul>
+      <% @archivo.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nombre %><br>
+    <%= f.text_field :nombre %>
+  </div>
+  <div class="field">
+    <%= f.label :autor %><br>
+    <%= f.text_field :autor %>
+  </div>
+
+  <div class="actions">
+      <p><%= f.submit "Guardar" %></p> 
+  </div>
+
+
+
+
+
+<% end %>
+
+
+
+<%= link_to 'Show', @archivo %> |
+<%= link_to 'Back', archivos_path %>

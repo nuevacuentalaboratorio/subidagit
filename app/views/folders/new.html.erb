@@ -1,0 +1,43 @@
+
+
+
+<%= form_for(@folder) do |f| %>
+  <% if @folder.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@folder.errors.count, "error") %> prohibited this folder from being saved:</h2>
+
+      <ul>
+      <% @folder.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+
+<h2 style="margin-left:15px;"> <i class="fa fa-plus" aria-hidden="true"></i>
+ Agregar Carpeta</h2>
+    <div class="col-lg-12">
+    
+    <%= f.text_field :nombre, class: "form-control", placeholder: "Nombre del archivo", :required => true %>
+  </div>
+  
+  <div class="field" style="display:none;">
+    <%= f.label :id_padre %><br>
+    <%= f.number_field :id_padre, id: "idpadre", value: @p %>
+  </div>
+
+  <div class="col-lg-12" style="margin-top:10px;">
+  <%= submit_tag "Agregar", class: "btn btn-primary col-lg-3"  %>
+
+  <a href="/folders/1" class="btn btn-warning col-lg-3">Back</a>
+  </div>
+  
+
+  
+<% end %>
+
+
+

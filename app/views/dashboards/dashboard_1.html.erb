@@ -4,12 +4,21 @@
     <div class="col-lg-6">
         <div class="widget navy-bg no-padding">
             <div class="p-m">
-                <h1 class="m-xs">$ 210,660</h1>
+                <h1 id="t" class="m-xs">
+                    
+                <% @payments.each do |p| %>
+                 $ <%= p.anual %>
+                <% end %>
+                    
+        
+                </h1>
 
                 <h3 class="font-bold no-margins">
                     Annual Payments
                 </h3>
                 <small>All Channels Together</small>
+
+
             </div>
             <div class="flot-chart">
                 <div class="flot-chart-content" id="flot-chart1"></div>
@@ -19,7 +28,13 @@
     <div class="col-lg-3">
         <div class="widget lazur-bg no-padding">
             <div class="p-m">
-                <h1 class="m-xs">$ 18,900</h1>
+                <h1 class="m-xs">
+
+                <% @payments.each do |p| %>
+                 $ <%= p.ultimomes %>
+                <% end %>
+
+                </h1>
 
                 <h3 class="font-bold no-margins">
                     Last Month Payment
@@ -31,15 +46,21 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-3" style="margin-top:1px;">
-        <div class="widget yellw-bg no-padding">
+    <div class="col-lg-3" style="margin-top:1px; ">
+        <div class="widget yellw-bg no-padding" style="background-color:#708EA4; color:white;">
             <div class="p-m">
-                <h1 class="m-xs">39%</h1>
+                <h1 class="m-xs">
+
+                <% @payments.each do |p| %>
+                  <%= p.porcentaje %> %
+                <% end %>
+
+                </h1>
 
                 <h3 class="font-bold no-margins">
                     Crecimiento % (MoM)
                 </h3>
-                <small>ENE-FEB.</small>
+                <small>ENE-DEC.</small>
             </div>
             <div class="flot-chart">
                 <div class="flot-chart-content" id="flot-chart3"></div>
@@ -51,7 +72,7 @@
 
 </div>
 
-
+<!--
 <div class="row  border-bottom white-bg dashboard-header">
     <div class="col-lg-12">
         <h2>Valor y Unidades en Inventario</h2>
@@ -78,14 +99,14 @@
 
         </div>
     </div>
-</div>
+</div>-->
 
 <br><br>
 <div class="row">
     <div class="col-lg-12">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
-                <h5>Velocidad Diaria - Stock - Días de Cobertura<small><span style="opacity:0;">aa</span> BEST SELLERS</small></h5>
+                <h5>Velocidad Diaria - Skus<small><span style="opacity:0;">aa</span> BEST SELLERS</small></h5>
             </div>
             <div class="ibox-content">
                 <div>
@@ -98,7 +119,7 @@
 
 
 <div class="wrapper wrapper-content animated fadeInRight">
-    <div class="row" style="position:absolute;">
+    <!--<div class="row" style="position:absolute;">
  
 
         <div class="col-lg-6" id="quitar2">
@@ -166,9 +187,9 @@
             </div>
         </div>
     </div>
+-->
 
-
-    <div class="row" style="position:relative;">
+    <!--<div class="row" style="position:relative;">
       <div class="col-lg-6" >
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
@@ -242,7 +263,7 @@
 
 
   
-    </div>
+    </div>-->
 
 <div class="row">
         
@@ -267,10 +288,16 @@
         <div class="ibox float-e-margins">
             <div class="ibox-title">
                 <h5>
-                    Ventas de los Best Sellers -vs- Stock
+                    Ventas de los Best Sellers -vs- Stock | Inv <span>
+                        <i style="color:#23c6c8;" class="fa fa-square" aria-hidden="true"></i>
+
+                    </span> Vel <span>
+                        <i style="color:rgba(26,179,148,1);" class="fa fa-square" aria-hidden="true"></i>
+
+                    </span>
                    
                 </h5>
-                <div ibox-tools></div>
+
             </div>
             <div class="ibox-content">
                 <div>
@@ -282,39 +309,7 @@
 
     </div>
 
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <h5>4P-Precio Público Promedio del Portafolio -vs- Qty de Sellers</h5>
-                    <div class="ibox-tools">
-                        <a class="collapse-link">
-                            <i class="fa fa-chevron-up"></i>
-                        </a>
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="fa fa-wrench"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-user">
-                            <li>
-                                <a href="#">Config option 1</a>
-                            </li>
-                            <li>
-                                <a href="#">Config option 2</a>
-                            </li>
-                        </ul>
-                        <a class="close-link">
-                            <i class="fa fa-times"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="ibox-content">
-                    <div class="flot-chart">
-                        <div class="flot-chart-content" id="flot-line-chart-multi"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 
     <div class="row">
 
@@ -414,31 +409,6 @@
         
     </div>
 
-    
-
-
-
-    <div class="row">
-
-        <div class="col-lg-12">
-            <div class="ibox float-e-margins">
-        
-                <div class="row m-t-lg">
-                 <div class="col-lg-12">
-                       <div class="ibox-content">
-                         <h2>Distribución de Ventas x Estados</h2>
-                         <div id="world-map" style="height: 300px;"></div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-
-
 </div>
 
 
@@ -449,7 +419,11 @@
 
 <script type="text/javascript">
     var lineData = {
-        labels: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul"],
+        labels: [
+                 <% @ventaunidads.each do |v| %>
+                        "<%= v.mes %>",
+                <% end %>
+        ],
         datasets: [
             
             {
@@ -460,7 +434,14 @@
                 pointStrokeColor: "#fff",
                 pointHighlightFill: "#fff",
                 pointHighlightStroke: "rgba(26,179,148,1)",
-                data: [56, 96, 80, 38, 172, 54, 180]
+                data: [
+
+                <% @ventaunidads.each do |v| %>
+                        "<%= v.valor %>",
+                <% end %>
+
+
+                ]
             }
         ]
     };
@@ -488,17 +469,25 @@
 
 <script type="text/javascript">
     var lineData = {
-        labels: ["SKU-1", "SKU-2", "SKU-3", "SKU-4", "SKU-5", "SKU-6", "SKU-7"],
+        labels: [     <% @skugraphs.each do |skug| %>
+      "<%= skug.sku %>",
+    <% end %>],
         datasets: [
             {
                 label: "Example dataset",
-                fillColor: "rgba(220,220,220,0.5)",
-                strokeColor: "rgba(220,220,220,1)",
-                pointColor: "rgba(220,220,220,1)",
+                fillColor: "rgba(35,198,200,0.5)",
+                strokeColor: "rgba(35,198,200,0.7)",
+                pointColor: "rgba(35,198,200,1)",
                 pointStrokeColor: "#fff",
                 pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(220,220,220,1)",
-                data: [325, 245, 400, 405, 270, 275, 200]
+                pointHighlightStroke: "rgba(35,198,200,1)",
+                data: [
+
+                <% @skugraphs.each do |skug| %>
+                  "<%= skug.inventario %>",
+                <% end %>
+
+                ]
             },
             {
                 label: "Example dataset",
@@ -508,7 +497,14 @@
                 pointStrokeColor: "#fff",
                 pointHighlightFill: "#fff",
                 pointHighlightStroke: "rgba(26,179,148,1)",
-                data: [200, 180, 80, 38, 172, 54, 180]
+                data: [
+
+                <% @skugraphs.each do |skug| %>
+                  "<%= skug.velocidad %>",
+                <% end %>
+
+                ]
+
             }
         ]
     };
@@ -576,32 +572,32 @@
 <script type="text/javascript">
     
         var barData = {
-        labels: ["SKU-1", "SKU-2", "SKU-3", "SKU-4", "SKU-5", "SKU-6", "SKU-7"],
+        labels: [
+
+     <% @skugraphs.each do |skug| %>
+      "<%= skug.sku %>",
+    <% end %>
+
+       
+
+        ],
         datasets: [
             {
                 label: "Velocidad Diaria",
-                fillColor: "rgba(220,220,220,0.5)",
-                strokeColor: "rgba(220,220,220,0.8)",
-                highlightFill: "rgba(220,220,220,0.75)",
-                highlightStroke: "rgba(220,220,220,1)",
-                data: [3, 2, 10, 6, 8, 4, 5]
-            },
-            {
-                label: "Stock",
+                fillColor: "red",
                 fillColor: "rgba(26,179,148,0.5)",
                 strokeColor: "rgba(26,179,148,0.8)",
                 highlightFill: "rgba(26,179,148,0.75)",
                 highlightStroke: "rgba(26,179,148,1)",
-                data: [28, 10, 50, 14, 86, 12, 70]
+                data: [
+
+                <% @skugraphs.each do |skug| %>
+                  "<%= skug.velocidad %>",
+                <% end %>
+
+                ]
             },
-            {
-                label: "Días de Cobertura",
-                fillColor: "#7aa2f9",
-                strokeColor: "#7aa2f9",
-                highlightFill: "#7aa2f9",
-                highlightStroke: "#7aa2f9",
-                data: [9, 5, 5, 2, 9, 3, 14]
-            }
+           
         ]
     };
 
@@ -1259,3 +1255,5 @@ $(function() {
 </script>
 
 <% end %>
+
+

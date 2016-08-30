@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nombre: MyString
+  porcentaje: 1
+  dias: 1
+  skus: 1
+  reviews: 1
+  revision: 2016-05-19
+
+two:
+  nombre: MyString
+  porcentaje: 1
+  dias: 1
+  skus: 1
+  reviews: 1
+  revision: 2016-05-19

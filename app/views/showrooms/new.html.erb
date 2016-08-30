@@ -1,0 +1,234 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-9">
+		<br>
+        <ol class="breadcrumb">
+            <li>
+                <a href="/showrooms">Home</a>
+        </li>
+        <li>
+            Showrooms
+        </li>
+
+       
+    </ol>
+</div>
+</div>
+
+<%= form_for(@showroom) do |f| %>
+  <% if @showroom.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@showroom.errors.count, "error") %> prohibited this showroom from being saved:</h2>
+
+      <ul>
+      <% @showroom.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+ <% end %>
+
+<div class="wrapper wrapper-content animated fadeInRight ecommerce">
+	<div class="row">
+    	<div class="col-lg-12">
+       		 
+           
+  					<div class="field">
+    					<%= f.label :descripcion %><br>
+    					<%= f.text_field :descripcion, class: "form-control", placeholder: "Descripcion", :required => true %>
+  					</div>
+  					<br>
+
+  					<div class="field">
+    					<%= f.label :modulo %><br>
+    					<%= f.number_field :modulo, class: "form-control", placeholder: "Modulo(s)", :required => true %>
+  					</div>
+  					<br>
+  					<div class="field">
+    					<%= f.label :telefono %><br>
+    					<%= f.text_field :telefono, class: "form-control", placeholder: "Teléfono", :required => true %>
+  					</div>
+  					<br>
+  					<div class="field">
+    					<%= f.label :direccion %><br>
+    					<%= f.text_field :direccion , class: "form-control", placeholder: "Direccion", :required => true %>
+  					</div>
+            <br>
+
+            <div class="field">
+              <%= f.label :Portada %><br>
+              <%= f.file_field :portada , class: "form-control", style:  "padding-bottom:40px; margin-bottom:10px;", :required => true %>
+            </div>
+
+  					<div class="field">
+    					<%= f.label :horario %><br>
+    					<%= f.text_field :horario , class: "form-control", placeholder: "Horario", :required => true %>
+  					</div>
+            <br>
+			
+
+
+
+
+
+
+
+  					<div class="actions">
+    					<input type="submit" value="Guardar" class="btn btn-primary col-lg-3">
+  					</div>
+
+
+
+
+					<% end %>
+			
+		</div>
+	</div>
+</div>
+
+<script>
+  
+  var colorPicker = document.querySelector('.js-color-picker'),
+    colorText = document.querySelector('.js-color-text');
+
+function formatHexcode() {
+    var color = colorPicker.value;
+
+    if (color[1] === color[2] &&
+        color[3] === color[4] &&
+        color[5] === color[6]) {
+        color = '#' + color[1] + color[3] + color[5];
+    }
+
+    return color;
+}
+
+function displayHexcode() {
+    colorText.innerHTML = formatHexcode();
+}
+
+colorPicker.addEventListener('change', displayHexcode);
+displayHexcode();
+
+</script>
+
+<script>
+	$(".date-picker").datepicker();
+
+	$( "#date-picker-3" ).change(function() {
+  		$( "#fecha" ).val($( "#date-picker-3" ).val());
+});
+
+  $( ".js-color-picker" ).change(function() {
+      $( "#colorrails" ).val($( ".js-color-picker" ).val());
+});
+
+ $( "#colorrails" ).val($( ".js-color-picker" ).val());
+  
+
+$(".date-picker").on("change", function () {
+    var id = $(this).attr("id");
+    var val = $("label[for='" + id + "']").text();
+    $("#msg").text(val + " changed");
+});
+</script>
+
+<style>
+#colorrails{
+
+display:none;
+}
+
+#fecha{
+	display: none;
+}
+
+.ui-datepicker {
+	background-color: #fff;
+	border: 1px solid #66AFE9;
+	border-radius: 4px;
+	box-shadow: 0 0 8px rgba(102,175,233,.6);
+	
+}
+.ui-datepicker a,
+.ui-datepicker a:hover {
+	text-decoration: none;
+}
+.ui-datepicker a:hover,
+.ui-datepicker td:hover a {
+	color: #2A6496;
+	-webkit-transition: color 0.1s ease-in-out;
+	   -moz-transition: color 0.1s ease-in-out;
+	     -o-transition: color 0.1s ease-in-out;
+	        transition: color 0.1s ease-in-out;
+}
+.ui-datepicker .ui-datepicker-header {
+	margin-bottom: 4px;
+	text-align: center;
+}
+.ui-datepicker .ui-datepicker-title {
+	font-weight: 700;
+}
+.ui-datepicker .ui-datepicker-prev,
+.ui-datepicker .ui-datepicker-next {
+	cursor: default;
+	font-family: 'Glyphicons Halflings';
+	-webkit-font-smoothing: antialiased;
+	font-style: normal;
+	font-weight: normal;
+	height: 20px;
+	line-height: 1;
+	margin-top: 2px;
+	width: 30px;
+}
+.ui-datepicker .ui-datepicker-prev {
+	float: left;
+	text-align: left;
+}
+.ui-datepicker .ui-datepicker-next {
+	float: right;
+	text-align: right;
+}
+.ui-datepicker .ui-datepicker-prev:before {
+	content: "\e079";
+}
+.ui-datepicker .ui-datepicker-next:before {
+	content: "\e080";
+}
+.ui-datepicker .ui-icon {
+	display: none;
+}
+.ui-datepicker .ui-datepicker-calendar {
+  table-layout: fixed;
+	width: 100%;
+}
+.ui-datepicker .ui-datepicker-calendar th,
+.ui-datepicker .ui-datepicker-calendar td {
+	text-align: center;
+	padding: 4px 0;
+}
+.ui-datepicker .ui-datepicker-calendar td {
+	border-radius: 4px;
+	-webkit-transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
+	   -moz-transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
+	     -o-transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
+	        transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
+}
+.ui-datepicker .ui-datepicker-calendar td:hover {
+	background-color: #eee;
+	cursor: pointer;
+}
+.ui-datepicker .ui-datepicker-calendar td a {
+	text-decoration: none;
+}
+.ui-datepicker .ui-datepicker-current-day {
+	background-color: #4289cc;
+}
+.ui-datepicker .ui-datepicker-current-day a {
+	color: #fff
+}
+.ui-datepicker .ui-datepicker-calendar .ui-datepicker-unselectable:hover {
+	background-color: #fff;
+	cursor: default;
+}
+
+</style>

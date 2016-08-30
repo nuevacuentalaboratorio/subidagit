@@ -1,10 +1,17 @@
 class DashboardsController < ApplicationController
+
   def dashboard_1
-    
+    @skugraphs = Skugraph.all
+     
+    @ventaunidads = Ventaunidad.all
+
+    @payments = Payment.all
   end
 
   def dashboard_2
   end
+
+
 
   def dashboard_3
     @extra_class = "sidebar-content"
@@ -21,7 +28,11 @@ class DashboardsController < ApplicationController
   end
 
   def channels
-    
+    @channels = Channel.all
+  end
+
+  def ventaunidads
+   
   end
 
 end

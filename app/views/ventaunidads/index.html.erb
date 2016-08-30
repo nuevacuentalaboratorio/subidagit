@@ -1,0 +1,161 @@
+
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-9">
+        <h2>Ventas en Unidades por Mes</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="<%= url_for :controller => 'dashboards', :action => 'dashboard_1' %>">Home</a>
+        </li>
+        <li class="active">
+            Ventas en Unidades 
+        </li>
+
+
+        
+    </ol>
+</div>
+        </div>
+<div class="wrapper wrapper-content">
+<div class="row">
+
+<div id="archivosenlista" class="wrapper wrapper-content  animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-content">
+                   
+                  
+
+                    <div class="input-group">
+<%= form_tag ventaunidads_path, :method => 'get', :id => "ventaunidads_search" do %>
+                        
+                        <div class="col-lg-8">
+                        <%= text_field_tag :search, params[:search], class: 'input form-control', :placeholder => "Buscar Mes" %>
+                       </div>
+
+                       <div class="col-lg-4">
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn btn-primary" style="margin-right:15px;"> <i class="fa fa-search"></i> Buscar</button>
+
+                            <a href="/ventaunidads" class="btn btn btn-warning"><i class="fa fa-bars" aria-hidden="true"></i>  Limpiar</a>
+                       </span>
+
+                        </div>
+
+                        <% end %>
+                    </div>
+                    <div class="clients-list">
+
+
+                        <div class="tab-content">
+                            <div id="tab-1" class="tab-pane active">
+                                <div class="full-height-scroll">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-hover">
+                                            <tbody>
+
+                                    <thead>
+                                      <tr>
+                                       <th>Mes</th>
+                                        <th>Ventas</th>
+                                        
+                                      
+                                        <th colspan="3"></th>
+                                      </tr>
+                                    </thead>                                  
+
+                                  <% @ventaunidads.each do |v| %>
+                                     <tr >
+                                         <td><%= v.mes %></td>
+                                          <td ><%= v.valor %> </td>
+
+                                          
+
+                                          
+                                         
+                                          <td><%= link_to 'Ver', v, class: "btn btn-xs btn-outline btn-primary" %></td>
+                                          <td><%= link_to 'Editar', edit_ventaunidad_path(v),  class: "btn btn-xs btn-outline btn-success" %></td>
+                                          <td><%= link_to 'Eliminar', v, method: :delete, data: { confirm: 'Are you sure?' },  class: "btn btn-xs btn-outline btn-danger" %></td>
+
+                                           
+                                          
+
+                                    </tr>
+
+
+                                  <% end %>
+
+                                            
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="col-lg-6" >
+<%= form_tag import_ventaunidads_path, multipart: true do %>
+  <%= file_field_tag :file, class: "form-control", :style => "padding-bottom:40px; margin-bottom:10px;"  %>
+  <%= submit_tag "Import", class: "btn btn-primary col-lg-12", :style => "", :onclick => 'validarFile();'  %>
+<% end %>
+
+</div>
+
+
+  <br><br><br><br><br><br>  <br><br>
+
+
+<script>
+    
+    var file = document.getElementById('file');
+
+
+
+    function validarFile(){
+
+        if(file.value == ""){
+            alert("Debe seleccionar un archivo a importar");
+            
+        }
+
+
+    }
+
+</script>

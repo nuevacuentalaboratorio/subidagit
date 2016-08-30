@@ -1,0 +1,298 @@
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-9">
+        <h2>Informes</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="/folders">Inicio</a>
+        </li>
+        <% if @nombre == nil %>
+          <li>
+              Folders
+          </li>
+        <%else%>
+          <li>
+              <%= @nombre %>
+          </li>
+        <%end%>
+        
+         <% if can? :create, Folder %>
+        <li>
+           <a href="/folders/new<%=@p%>">Agregar Carpeta</a>
+
+        </li>
+        <%end%>
+        <% if can? :create, Archivofolder %>
+        <li>
+           <a href="/archivofolders/new<%=@p%>">Subir Archivo</a>
+
+        </li>
+        <%end%>
+       
+        <% if @idpadre == nil %>
+        <li><strong><a href="/folders/1">Back</a></strong></li>
+        <%else%>
+        <li><strong><a href="<%= @idpadre %>">Back</a></strong></li>
+        <%end%>
+        
+        
+    </ol>
+</div>
+</div>
+<br><br>
+
+<div class="col-lg-12">
+
+
+  <div>
+    
+    <% @folders.each do |folder| %>
+     
+      <div class="carpeta col-lg-1" style="text-align:center; ">
+        
+        <a href="/folders/<%= folder.id %>"><i style="font-size:40px; margin-left:10px;" class="fa fa-folder-open" aria-hidden="true"></i></a>
+
+       
+        <br>
+        <%= folder.nombre %>
+        <!--<%= link_to '', folder, method: :delete, data: { confirm: 'Are you sure in delete this folder' }, class: "papelera btn btn-xs btn-outline btn-danger" %>-->
+
+
+<ul id="contextMenu" class="dropdown-menu" role="menu"  >
+    <li><%= link_to 'Eliminar', folder, method: :delete, data: { confirm: 'Are you sure in delete this folder' } %></li>
+
+   
+</ul>
+
+<!-- Post Info -->
+
+        
+
+      </div>
+
+    <% end %>
+
+  </div>
+
+<!-- archivos ******************************** -->
+
+<div id="listaarchivos">  
+  <% @archivofolders.each do |af| %>
+
+    <div class="carpeta col-lg-1" style="text-align:center;">
+
+      <a title="Abrir Archivo" class="linkiconarchivo" href="<%= af.filefolder.url %>">
+
+     <% if af.filefolder.ext == 'png' or af.filefolder.ext == 'jpg' or af.filefolder.ext == 'jpeg' %>
+      
+      <i style="font-size:40px; left:50%;" class="fa fa-file-image-o" aria-hidden="true"></i>
+
+     <%elsif af.filefolder.ext == 'xls' or af.filefolder.ext == 'csv' or af.filefolder.ext == 'xlsx'%>
+      <i  style="font-size:40px; left:50%;" class="fa fa-file-excel-o" aria-hidden="true"></i>
+      <%elsif af.filefolder.ext == 'doc' %>
+      <i style="font-size:40px; left:50%;" class="fa fa-file-word-o" aria-hidden="true"></i>
+       <%elsif af.filefolder.ext == 'txt' %>
+      <i style="font-size:40px; left:50%;" class="fa fa-file-text-o" aria-hidden="true"></i>
+      <%elsif af.filefolder.ext == 'zip' or af.filefolder.ext == 'tar' or af.filefolder.ext == 'rar' or af.filefolder.ext == 'tgz' %>
+      <i style="font-size:40px; left:50%;" class="fa fa-file-archive-o" aria-hidden="true"></i>
+      <%elsif af.filefolder.ext == 'pdf' %>
+      <i style="font-size:40px; left:50%;" class="fa fa-file-pdf-o" aria-hidden="true"></i>
+      <%elsif af.filefolder.ext == 'html' %>
+      <i style="font-size:40px; left:50%;" class="fa fa-file-code-o" aria-hidden="true"></i>
+      <%else %>
+      <i style="font-size:40px; left:50%;"  class="fa fa-file-o" aria-hidden="true"></i>
+
+      <%end%>
+
+      </a>
+
+     <a title="Editar Archivo" class="linkarchivo" href="/archivofolders/<%=af.id%>/edit"><%= af.nombre %></a>
+
+
+     
+
+    </div>
+    
+  <% end %>
+</div>
+
+<!-- archivos ******************************** -->
+
+
+</div>
+
+<!--
+<div class="col-lg-6 ">
+<%= form_for [@folder, Archivofolder.new] do |f| %>
+    <h2 style="margin-left:15px;"> <i class="fa fa-plus" aria-hidden="true"></i>
+ Agregar Archivo</h2>
+    <div class="col-lg-12">
+    
+    <%= f.text_field :nombre, class: "form-control", placeholder: "Nombre del archivo" %>
+  </div>
+  <div class="col-lg-12" style="margin-top:10px;">
+
+    <%= f.text_field :autor, class: "form-control", placeholder: "Autor" %>
+  </div>
+
+  <div class="col-lg-12" style="margin-top:10px;">
+    
+  <%= file_field_tag :filefolder, class: "form-control", :style => "padding-bottom:40px; margin-bottom:10px;"  %>
+  </div>
+  <div class="col-lg-12" style="margin-top:10px;">
+  <%= submit_tag "Import", class: "btn btn-primary col-lg-12"  %>
+  </div>
+
+<%end%>
+</div>
+-->
+
+<!--
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Folders</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Id padre</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @folders.each do |folder| %>
+      <tr>
+        <td><%= folder.nombre %></td>
+        <td><%= folder.id_padre %></td>
+        <td><%= link_to 'Show', folder %></td>
+        <td><%= link_to 'Edit', edit_folder_path(folder) %></td>
+        <td><%= link_to 'Destroy', folder, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Folder', new_folder_path %>
+-->
+
+<style>
+  .linkarchivo{
+    color:#4d4b45;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+
+  .linkarchivo:hover{
+    color:#1ab394;
+    text-decoration: none;
+  }
+
+  .linkiconarchivo{
+
+    color:#708ea4;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+
+  .linkiconarchivo:hover{
+
+    color:#1ab394;
+    text-decoration: none;
+  }
+
+  #contextMenu{
+
+    margin:0 auto;
+  }
+
+  .carpeta{
+    margin:25px;
+  }
+</style>
+
+<script>
+
+var x = location.pathname;
+if(x == '/folders'){
+
+
+
+}
+
+</script>
+
+<script>
+  /*$( ".papelera" ).append($(".pape"));
+  $( ".carpeta" ).contextmenu(function() {
+    
+  });*/
+
+(function ($, window) {
+
+    $.fn.contextMenu = function (settings) {
+
+        return this.each(function () {
+
+            // Open context menu
+            $(this).on("contextmenu", function (e) {
+                // return native menu if pressing control
+                if (e.ctrlKey) return;
+                
+                //open menu
+                var $menu = $(settings.menuSelector)
+                    .data("invokedOn", $(e.target))
+                    .show()
+                    .css({
+                        position: "absolute",
+                        left: getMenuPosition(e.clientX, 'width', 'scrollLeft'),
+                        top: getMenuPosition(e.clientY, 'height', 'scrollTop')
+                    })
+                    .off('click')
+                    .on('click', 'a', function (e) {
+                        $menu.hide();
+                
+                        var $invokedOn = $menu.data("invokedOn");
+                        var $selectedMenu = $(e.target);
+                        
+                        settings.menuSelected.call(this, $invokedOn, $selectedMenu);
+                    });
+                
+                return false;
+            });
+
+            //make sure menu closes on any click
+            $('body').click(function () {
+                $(settings.menuSelector).hide();
+            });
+        });
+        
+        function getMenuPosition(mouse, direction, scrollDir) {
+            var win = $(window)[direction](),
+                scroll = $(window)[scrollDir](),
+                menu = $(settings.menuSelector)[direction](),
+                position = mouse + scroll;
+                        
+            // opening menu would pass the side of the page
+            if (mouse + menu > win && menu < mouse) 
+                position -= menu;
+            
+            return position;
+        }    
+
+    };
+})(jQuery, window);
+
+$(".carpeta i").contextMenu({
+    menuSelector: "#contextMenu",
+    menuSelected: function (invokedOn, selectedMenu) {
+        var msg = "You selected the menu item '" + selectedMenu.text() +
+            "' on the value '" + invokedOn.text() + "'";
+        
+    }
+});
+
+</script>

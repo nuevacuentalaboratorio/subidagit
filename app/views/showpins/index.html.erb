@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Showpins</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nota</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @showpins.each do |showpin| %>
+      <tr>
+        <td><%= showpin.nota %></td>
+        <td><%= link_to 'Show', showpin %></td>
+        <td><%= link_to 'Edit', edit_showpin_path(showpin) %></td>
+        
+        <td><%= link_to 'Destroy', showpin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Showpin', new_showpin_path %>

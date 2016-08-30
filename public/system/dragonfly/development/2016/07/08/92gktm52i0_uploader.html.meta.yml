@@ -1,0 +1,4 @@
+---
+name: uploader.html
+model_class: Documento
+model_attachment: archivo

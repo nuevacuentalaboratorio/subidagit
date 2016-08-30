@@ -12,3 +12,17 @@
 //= require peity/jquery.peity.min.js
 //= require slimscroll/jquery.slimscroll.min.js
 //= require inspinia.js
+//= require jquery
+//= require jquery_ujs
+//= require_tree .
+
+$(function() {
+  $("#archivos a, #archivos .pagination a").live("click", function() {
+    $.getScript(this.href);
+    return false;
+  });
+  $("#archivos_search input").keyup(function() {
+    $.get($("#archivos_search").attr("action"), $("#archivos_search").serialize(), null, "script");
+    return false;
+  });
+});
